@@ -19,6 +19,7 @@ app.get('/api/validarhorario/comercial', (req, res) => {
     let dtFim = moment.tz(dtNowStr + " 17:59:59", "America/Maceio");
 
     let dia = dtNow.day();
+    let diaName = '';
     let diaValido;
 
     let horaStr = dtNow.format("HH");
@@ -28,7 +29,7 @@ app.get('/api/validarhorario/comercial', (req, res) => {
     if (dia && dia > 0) {
         diaValido = true;
 
-        if (dia = 6) {
+        if (dia == 6) {
             if (horaInt && horaInt > 7 && horaInt < 12) {
                 horaValida = true;
             } else {
@@ -47,13 +48,41 @@ app.get('/api/validarhorario/comercial', (req, res) => {
         horaValida = false;
     }
 
+    switch (dia) {
+        case 0:
+            diaName = 'Domingo';
+            break;
+        case 1:
+            diaName = 'Segunda-Feira';
+            break;
+        case 2:
+            diaName = 'Terça-Feira';
+            break;
+        case 3:
+            diaName = 'Quarta-Feira';
+            break;
+        case 4:
+            diaName = 'Quinta-Feira';
+            break;
+        case 5:
+            diaName = 'Sexta-Feira';
+            break;
+        case 6:
+            diaName = 'Sábado';
+            break;
+        default:
+            diaName = "";
+    }
+
+
+
     res.json(
         {
             data_atual: dtNow.format("DD/MM/YYYY HH:mm:ss"),
             data_inicio: dtInicio.format("DD/MM/YYYY HH:mm:ss"),
             data_fim: dtFim.format("DD/MM/YYYY HH:mm:ss"),
-            //dia_semana_atual: dia,
-            //hora_atual: horaInt,
+            dia_semana_atual: diaName,
+            hora_atual: horaInt,
             //dia_valido: !!diaValido,
             //hora_valida: !!horaValida,
             dentro_do_horario: (!!diaValido && !!horaValida)

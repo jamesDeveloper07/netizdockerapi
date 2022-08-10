@@ -96,13 +96,16 @@ app.get('/api/validarsinistro', (req, res) => {
 
     //variáveis de teste;
     //devem ser parametrizadas em um banco de dados e não no código.
-    let sinistro = true;
-    let descricao = 'Está ocorrendo uma manutenção no nosso sistema, com previsão de finalização para as próximas 4 horas';
+    let sinistro = false;
+    //let descricao = 'Está ocorrendo uma manutenção no nosso sistema, com previsão de finalização para as próximas 4 horas';
+    let descricao = '';
+    let previsao_retorno = null
 
     res.json(
         {
             sinistro,
-            descricao
+            descricao,
+            previsao
         }
     );
 

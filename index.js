@@ -105,7 +105,7 @@ app.get('/api/validarsinistro', (req, res) => {
         {
             sinistro,
             descricao,
-            previsao
+            previsao_retorno
         }
     );
 

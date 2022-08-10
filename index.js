@@ -249,10 +249,10 @@ app.get('/api/validardocumento', (req, res) => {
 
     res.json(
         {
-            message,
             tipo,
             documento,
-            documento_valido
+            documento_valido,
+            message
         }
     );
 
